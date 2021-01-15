@@ -35803,6 +35803,11 @@ function Modal({
   const classModalName = search ? "displayBlock" : "displayNone";
   console.log(queryInputValue);
   console.log(query);
+
+  function handleSearchThisCity() {
+    console.log("get the new city");
+  }
+
   return /*#__PURE__*/_react.default.createElement("div", {
     className: classModalName
   }, /*#__PURE__*/_react.default.createElement("form", {
@@ -35823,6 +35828,7 @@ function Modal({
     className: "search_locatons"
   }, weather.map(input => /*#__PURE__*/_react.default.createElement("p", {
     className: "searchNames",
+    onClick: handleSearchThisCity,
     key: input.woeid
   }, input.title))));
 }
@@ -35990,7 +35996,7 @@ var _DisplayWeatherApi = _interopRequireDefault(require("./DisplayWeatherApi"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function WeatherApp() {
-  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("header", null, /*#__PURE__*/_react.default.createElement("h1", null, "Weather App")), /*#__PURE__*/_react.default.createElement(_DisplayWeatherApi.default, null));
+  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_DisplayWeatherApi.default, null));
 }
 
 var _default = WeatherApp;
@@ -36118,7 +36124,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60015" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60874" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -13,6 +13,11 @@ function Modal({ search, setSearch }) {
   const classModalName = search ? "displayBlock" : "displayNone";
 console.log(queryInputValue)
 console.log(query)
+
+function handleSearchThisCity() {
+    console.log("get the new city");
+}
+
   return (
     <div className={classModalName}>
       <form className="modal-content" onSubmit={handleSubmitQuery}>
@@ -31,7 +36,7 @@ console.log(query)
         X
       </button>
       <p className="search_locatons">
-      {weather.map(input => <p className="searchNames" key={input.woeid}>{input.title}</p>)}
+      {weather.map(input => <p className="searchNames" onClick={handleSearchThisCity} key={input.woeid}>{input.title}</p>)}
       </p>
     </div>
   );
