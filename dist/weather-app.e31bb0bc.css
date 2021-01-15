@@ -1,0 +1,252 @@
+@font-face {
+    font-family: 'Raleway';
+    src: url('/Raleway-Bold.dad0cbb0.woff2') format('woff2'),
+        url('/Raleway-Bold.746ed194.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Raleway';
+    src: url('/Raleway-Thin.27478bd5.woff2') format('woff2'),
+        url('/Raleway-Thin.1deb961c.woff') format('woff');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Raleway';
+    src: url('/Raleway-ThinItalic.c4d111a7.woff2') format('woff2'),
+        url('/Raleway-ThinItalic.bde0cae4.woff') format('woff');
+    font-weight: 100;
+    font-style: italic;
+    font-display: swap;
+}
+
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Raleway";
+}
+
+.displayBlock {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: #1E213A;
+    padding-top: 100px;
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.modal-content input {
+    border: 1px solid #E7E7EB;
+    box-sizing: border-box;
+    padding: 16px;
+    margin-right: 10px;
+    background-color: transparent;
+}
+
+h2 {
+    margin-left: 60px;
+    font-size: 45px;
+}
+
+.search-btn {
+    color: #E7E7EB;
+    background-color: #3C47E9;
+    padding: 12px;
+    border: none;
+    margin-left: -215px;
+    font-size: 20px;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.displayNone {
+    background-color: black;
+}
+
+.subheadings {
+    background-color: #1E213A;
+    margin: 0;
+    padding: 1px;
+    color: #A09FB1;
+}
+.main-container-description {
+    text-align: center;
+}
+.main-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px;
+}
+
+.container__search {
+    background-color: #6E707A;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    color: #E7E7EB;
+    font-size: 16px;
+    padding: 16px;
+    margin: 15px;
+}
+
+.container__icon {
+    background: rgba(110, 112, 122, 0.3);
+    border-radius: 50%;
+}
+
+.more-info {
+    background-color:  #100E1D;
+    color: #ffffff;
+    padding-bottom: 10px;
+}
+.container {
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding-top: 100px;
+}
+
+.image-heading {
+    max-width: 150px;
+}
+
+.image-content {
+    max-width: 60px;
+}
+
+.list-items {
+    list-style: none;
+    background-color:  #1E213A;
+    text-align: center;
+    margin: 20px; 
+}
+
+.tempeture {
+    display: flex;
+    justify-content: space-around;
+}
+
+.lists-info li {
+    background-color: #1E213A;
+    list-style: none;
+    text-align: center;
+    padding: 10px;
+    margin: 10px;
+}
+
+.lists-info li p:nth-of-type(2) {
+    font-size: 64px;
+}
+
+.temp {
+    color: #E7E7EB;
+    font-size: 100px;
+    font-family: "Raleway";
+}
+.name {
+    font-size: 36px;
+    color: #88869D;
+}
+.date {
+    font-size: 18px;
+    color: #88869D;
+}
+.half-progress {
+    margin-left: 60px;
+    margin-right: 60px;
+}
+
+progress {
+    padding: 16px;
+}
+
+.atittude {
+    position: absolute;
+    right: 50px;
+    padding-top: 20px;
+}
+
+.atittude button {
+    padding: 16px;
+    margin: 10px;
+    border-radius: 50%;
+    border: none;
+    outline: none;
+    margin-right: 5px;
+    font-size: 20px;
+}
+
+::placeholder {
+    color: #ffffff;
+    font-size: 25px;
+}
+
+input {
+    color: #ffffff;
+    font-size: 25px;
+}
+
+
+.loading {
+    font-size: 40px;
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    padding-top: 20%;
+    padding-bottom: 20%;
+}
+
+.searchNames {
+    color: #ffffff;
+    border: 1px solid #E7E7EB;
+    box-sizing: border-box;
+    padding: 16px;
+    font-size: 20px;
+    background-color: transparent;
+    /* width: 50%;     */
+}
+
+@media (min-width: 1400px) {
+    section {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .subheadings {
+        grid-column-start: 1;
+        grid-column-end: 2;
+        overflow-y: scroll;
+        line-height: 200px;
+    }
+
+    .more-info {
+        grid-column-start: 2;
+        grid-column-end: 6;
+    }
+
+    .lists-info {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/*# sourceMappingURL=/weather-app.e31bb0bc.css.map */

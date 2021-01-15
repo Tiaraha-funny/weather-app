@@ -9,7 +9,8 @@ const DEFAULT_API = "https://www.metaweather.com//api/location/search/?query=";
 const WOEID_API = "https://www.metaweather.com//api/location/";
 
 function WeatherContextsProvider({ children }) {
-    const [query, setQuery] = useState("cologne");
+  const [query, setQuery] = useState("cologne");
+  const [queryInputValue, setQueryInputValue] = useState("cologne");
 
   const [state, dispatch] = useReducer(
     (state, action) => {
@@ -18,14 +19,15 @@ function WeatherContextsProvider({ children }) {
           return {
             ...state,
             weather: action.dataQuery,
+            loading: true
           };
         }
 
         case "DETAILS_API": {
-            return {
-                ...state,
-                details: action.dataWoeid
-            }
+          return {
+            ...state,
+            details: action.dataWoeid,
+          };
         }
         default: {
           console.error("No actions defined for", action.type);
@@ -34,26 +36,23 @@ function WeatherContextsProvider({ children }) {
       }
       return state;
     },
-    { weather: [], details: [] }
+    { weather: [], details: [], loading: false }
   );
 
-  const {weather, details} = state;
-  console.log("first fetch", weather);
-  console.log("seconde fetch", details);
+  const { weather, details, loading } = state;
 
   async function fetchDefaultApi() {
     const response = await fetch(CORSE_API + DEFAULT_API + query);
     const dataQuery = await response.json();
     dispatch({ type: "DEFAULT_API", dataQuery });
-    console.log("dataQuery response", dataQuery);
   }
 
   async function detailsApi() {
-      console.log("check the fetch again with woeid", weather);
-      const result = weather && await fetch(`${CORSE_API}${WOEID_API}${weather[0].woeid}`)
-      const dataWoeid = await result.json();
-      dispatch({ type: "DETAILS_API", dataWoeid});
-      console.log("fetch the woeid", dataWoeid);
+    console.log("check the fetch again with woeid", weather);
+    const result =
+      weather && (await fetch(`${CORSE_API}${WOEID_API}${weather[0].woeid}`));
+    const dataWoeid = await result.json();
+    dispatch({ type: "DETAILS_API", dataWoeid });
   }
 
   useEffect(() => {
@@ -61,19 +60,23 @@ function WeatherContextsProvider({ children }) {
   }, [query]);
 
   useEffect(() => {
-    detailsApi()
-  }, [weather])
+    detailsApi();
+  }, [weather]);
 
   function handleSubmitQuery(e) {
-      e.preventDefault();
+    e.preventDefault();
+    console.log("event", e.target.query);
+    setQuery(e.target.query.value);
   }
 
   function handleInputQuery(e) {
-      setQuery(e.target.value)
+    setQueryInputValue(e.target.value);
   }
 
   return (
-    <WeatherAppContexts.Provider value={{ state, query, setQuery, handleSubmitQuery, handleInputQuery }}>
+    <WeatherAppContexts.Provider
+      value={{ state, query, setQuery, queryInputValue, setQueryInputValue, handleSubmitQuery, handleInputQuery }}
+    >
       {children}
     </WeatherAppContexts.Provider>
   );
