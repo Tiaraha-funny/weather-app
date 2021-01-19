@@ -61,7 +61,7 @@ function WeatherContextsProvider({ children }) {
 
   useEffect(() => {
     detailsApi();
-  }, [weather]);
+  }, [ query, weather ]);
 
   function handleSubmitQuery(e) {
     e.preventDefault();
@@ -75,7 +75,7 @@ function WeatherContextsProvider({ children }) {
 
   return (
     <WeatherAppContexts.Provider
-      value={{ state, query, setQuery, queryInputValue, setQueryInputValue, handleSubmitQuery, handleInputQuery }}
+      value={{ state, query, setQuery, queryInputValue, setQueryInputValue, handleSubmitQuery, handleInputQuery, detailsApi }}
     >
       {children}
     </WeatherAppContexts.Provider>

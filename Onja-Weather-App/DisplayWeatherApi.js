@@ -12,7 +12,7 @@ function DisplayWeatherApi() {
   console.log("global weather", weather);
   console.log("global weather details", details);
 
-  const weatherEveryday = weather && details && details.consolidated_weather;
+  const weatherEveryday = loading && weather && details && details.consolidated_weather;
   const weatherToday =
     loading && details && weatherEveryday && weatherEveryday[0];
 
@@ -25,12 +25,26 @@ function DisplayWeatherApi() {
 
   const weekWeather = [weather1, weather2, weather3, weather4, weather5];
 
+  const [bg, setBg] = useState({backgroundColor: "white"} )
+
   function handleConvertingCelsius() {
     setToFahrenheit(false);
+    if(!toFahrenheit) {
+      setBg({backgroundColor: "white"})
+    } else {
+      setBg({backgroundColor: "black"})
+    }
+    console.log("background", bg);
   }
 
   function handleConvertingFahrenheit() {
     setToFahrenheit(true);
+    if(!toFahrenheit) {
+      setBg({backgroundColor: "black"})
+    } else {
+      setBg({backgroundColor: "white"})
+    }
+    console.log("background", bg);
   }
 
   return (
@@ -71,8 +85,8 @@ function DisplayWeatherApi() {
         ) : (
           <div>
             <div className="atittude">
-              <button onClick={handleConvertingCelsius}>C</button>
-              <button onClick={handleConvertingFahrenheit}>F</button>
+              <button style={{bg}} onClick={handleConvertingCelsius}>&deg;C</button>
+              <button style={{bg}} onClick={handleConvertingFahrenheit}>&deg;F</button>
             </div>
             <ul className="container">
               {loading &&
@@ -80,7 +94,7 @@ function DisplayWeatherApi() {
                 weatherEveryday &&
                 weekWeather &&
                 weekWeather.map((day) => (
-                  <li key={day?.id} className="list-items">
+                  <li key={day?.id} className="list-items" >
                     <p>{new Date(day?.applicable_date).toDateString()}</p>
                     <img
                       className="image-content"

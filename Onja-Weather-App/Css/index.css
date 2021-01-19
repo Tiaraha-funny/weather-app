@@ -12,6 +12,8 @@ body {
     right: 0;
     top: 0;
     bottom: 0;
+    height: 100vh;
+    overflow: scroll;
     background-color: #1E213A;
     padding-top: 100px;
 }
@@ -177,6 +179,10 @@ input {
     font-size: 25px;
 }
 
+button {
+    cursor: pointer;
+}
+
 
 .loading {
     font-size: 40px;
@@ -196,9 +202,9 @@ input {
     padding: 16px;
     font-size: 20px;
     background-color: transparent;
-    /* width: 50%;     */
     margin-left: 114px;
     margin-right: 140px;
+    cursor: pointer;
 }
 
 @media (min-width: 1000px) {
@@ -210,10 +216,8 @@ input {
     .subheadings {
         grid-column-start: 1;
         grid-column-end: 2;
-        overflow-y: scroll;
         line-height: 10px;
     }
-
     .main-container-description {
         margin-top: 200px;
     }
@@ -227,12 +231,36 @@ input {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
     }
+    .modal-content input {
+        margin-right: 170px;
+    }
 
-    .displayBlock  {
-        right: 1000px;
+    .search-btn {
+    margin-left: -76px;
+    font-size: 20px;
+    margin-right: 30px;
     }
 
     .modal-content input {
-        margin-right: 170px;
+        margin-right: 104px;
+        width: 70%;
+        margin-left: 40px;
+    }
+
+    .white {
+        background-color: white;
+    }
+
+    .black {
+        background-color: black;
+    }
+
+    .displayBlock {
+        width: 32%;
+    }
+
+    .searchNames {
+        width: 55%;
+        margin-left: 40px;
     }
 }
