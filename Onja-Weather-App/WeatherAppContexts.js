@@ -19,7 +19,7 @@ function WeatherContextsProvider({ children }) {
           return {
             ...state,
             weather: action.dataQuery,
-            loading: true
+            loading: action.loading,
           };
         }
 
@@ -36,7 +36,7 @@ function WeatherContextsProvider({ children }) {
       }
       return state;
     },
-    { weather: [], details: [], loading: false }
+    { weather: [], details: [], loading: true }
   );
 
   const { weather, details, loading } = state;
@@ -44,7 +44,7 @@ function WeatherContextsProvider({ children }) {
   async function fetchDefaultApi() {
     const response = await fetch(CORSE_API + DEFAULT_API + query);
     const dataQuery = await response.json();
-    dispatch({ type: "DEFAULT_API", dataQuery });
+    dispatch({ type: "DEFAULT_API", dataQuery, loading: false });
   }
 
   async function detailsApi() {
@@ -61,7 +61,7 @@ function WeatherContextsProvider({ children }) {
 
   useEffect(() => {
     detailsApi();
-  }, [ query, weather ]);
+  }, [query, weather]);
 
   function handleSubmitQuery(e) {
     e.preventDefault();
@@ -75,7 +75,16 @@ function WeatherContextsProvider({ children }) {
 
   return (
     <WeatherAppContexts.Provider
-      value={{ state, query, setQuery, queryInputValue, setQueryInputValue, handleSubmitQuery, handleInputQuery, detailsApi }}
+      value={{
+        state,
+        query,
+        setQuery,
+        queryInputValue,
+        setQueryInputValue,
+        handleSubmitQuery,
+        handleInputQuery,
+        detailsApi,
+      }}
     >
       {children}
     </WeatherAppContexts.Provider>

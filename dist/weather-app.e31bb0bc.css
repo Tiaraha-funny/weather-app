@@ -238,6 +238,7 @@ button {
     cursor: pointer;
 }
 
+
 @media (min-width: 1000px) {
     section {
         display: grid;
@@ -281,10 +282,12 @@ button {
     .displayBlock {
         width: 32%;
     }
+
     .searchNames {
         width: 55%;
         margin-left: 40px;
     }
+
     .container {
         display: flex;
         flex-direction: row;

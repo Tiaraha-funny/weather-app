@@ -33887,7 +33887,7 @@ function WeatherContextsProvider({
         {
           return { ...state,
             weather: action.dataQuery,
-            loading: true
+            loading: action.loading
           };
         }
 
@@ -33909,7 +33909,7 @@ function WeatherContextsProvider({
   }, {
     weather: [],
     details: [],
-    loading: false
+    loading: true
   });
   const {
     weather,
@@ -33922,7 +33922,8 @@ function WeatherContextsProvider({
     const dataQuery = await response.json();
     dispatch({
       type: "DEFAULT_API",
-      dataQuery
+      dataQuery,
+      loading: false
     });
   }
 
@@ -34112,14 +34113,14 @@ function DisplayWeatherApi() {
   console.log("loading", loading);
   console.log("global weather", weather);
   console.log("global weather details", details);
-  const weatherEveryday = loading && weather && details && details.consolidated_weather;
-  const weatherToday = loading && details && weatherEveryday && weatherEveryday[0];
-  const weather1 = loading && details && weatherEveryday && weatherEveryday[1];
+  const weatherEveryday = !loading && weather && details && details.consolidated_weather;
+  const weatherToday = !loading && details && weatherEveryday && weatherEveryday[0];
+  const weather1 = !loading && details && weatherEveryday && weatherEveryday[1];
   console.log("start tomorow", weather1);
-  const weather2 = loading && details && weatherToday && weatherEveryday[2];
-  const weather3 = loading && details && weatherToday && weatherEveryday[3];
-  const weather4 = loading && details && weatherToday && weatherEveryday[4];
-  const weather5 = loading && details && weatherToday && weatherEveryday[5];
+  const weather2 = !loading && details && weatherToday && weatherEveryday[2];
+  const weather3 = !loading && details && weatherToday && weatherEveryday[3];
+  const weather4 = !loading && details && weatherToday && weatherEveryday[4];
+  const weather5 = !loading && details && weatherToday && weatherEveryday[5];
   const weekWeather = [weather1, weather2, weather3, weather4, weather5];
   const [bg, setBg] = (0, _react.useState)({
     backgroundColor: "white"
@@ -34159,7 +34160,7 @@ function DisplayWeatherApi() {
 
   return /*#__PURE__*/_react.default.createElement("section", null, /*#__PURE__*/_react.default.createElement("header", {
     className: "subheadings"
-  }, /*#__PURE__*/_react.default.createElement(_Header.default, null), !loading ? /*#__PURE__*/_react.default.createElement("h1", {
+  }, /*#__PURE__*/_react.default.createElement(_Header.default, null), weather === [] ? /*#__PURE__*/_react.default.createElement("h1", {
     className: "loading"
   }, "Loading...") : /*#__PURE__*/_react.default.createElement("div", {
     className: "main-container-description"
@@ -34168,7 +34169,7 @@ function DisplayWeatherApi() {
     src: `https://www.metaweather.com//static/img/weather/${weatherToday?.weather_state_abbr}.svg`
   }), /*#__PURE__*/_react.default.createElement("p", {
     className: "temp"
-  }, `${Math.round(toFahrenheit ? weatherToday?.the_temp * 9 / 5 + 32 : weatherToday?.the_temp)} ${toFahrenheit ? `\xB0F` : `\xB0C`}`), /*#__PURE__*/_react.default.createElement("p", {
+  }, `${toFahrenheit ? Math.round(weatherToday?.the_temp * 9 / 5 + 32) : Math.round(weatherToday?.the_temp)} ${toFahrenheit ? `\xB0F` : `\xB0C`}`), /*#__PURE__*/_react.default.createElement("p", {
     className: "name"
   }, weatherToday?.weather_state_name), /*#__PURE__*/_react.default.createElement("p", {
     className: "date"
@@ -34178,7 +34179,7 @@ function DisplayWeatherApi() {
     month: "short"
   })), /*#__PURE__*/_react.default.createElement("h1", null, details?.title))), /*#__PURE__*/_react.default.createElement("div", {
     className: "more-info"
-  }, !loading ? /*#__PURE__*/_react.default.createElement("h1", {
+  }, loading ? /*#__PURE__*/_react.default.createElement("h1", {
     className: "loading"
   }, "Loading...") : /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", {
     className: "atittude"
@@ -34194,7 +34195,7 @@ function DisplayWeatherApi() {
     onClick: handleConvertingFahrenheit
   }, "\xB0F")), /*#__PURE__*/_react.default.createElement("ul", {
     className: "container"
-  }, loading && details && weatherEveryday && weekWeather && weekWeather.map(day => /*#__PURE__*/_react.default.createElement("li", {
+  }, !loading && details && weatherEveryday && weekWeather && weekWeather.map(day => /*#__PURE__*/_react.default.createElement("li", {
     key: day?.id,
     className: "list-items"
   }, /*#__PURE__*/_react.default.createElement("p", null, new Date(day?.applicable_date).toDateString()), /*#__PURE__*/_react.default.createElement("img", {
@@ -34204,7 +34205,7 @@ function DisplayWeatherApi() {
     className: "tempeture"
   }, /*#__PURE__*/_react.default.createElement("p", null, `${Math.round(toFahrenheit ? day?.max_temp * 9 / 5 + 32 : day?.max_temp)} ${toFahrenheit ? `\xB0F` : `\xB0C`}`), /*#__PURE__*/_react.default.createElement("p", null, `${Math.round(toFahrenheit ? day?.min_temp * 9 / 5 + 32 : day?.min_temp)} ${toFahrenheit ? `\xB0F` : `\xB0C`}`))))), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h2", null, new Date(weatherToday?.applicable_date).toDateString(), " ", "Highlight"), /*#__PURE__*/_react.default.createElement("ul", {
     className: "lists-info"
-  }, /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("p", null, "Wind status"), /*#__PURE__*/_react.default.createElement("p", null, Math.round(weatherToday?.wind_speed), " mph"), /*#__PURE__*/_react.default.createElement("p", null, weatherToday?.wind_direction_compass)), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("p", null, "Humidity"), /*#__PURE__*/_react.default.createElement("p", null, weatherToday?.humidity, " %"), /*#__PURE__*/_react.default.createElement("dfn", {
+  }, /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("p", null, "Wind status"), /*#__PURE__*/_react.default.createElement("p", null, Math.round(weatherToday?.wind_speed), /*#__PURE__*/_react.default.createElement("small", null, "mph")), /*#__PURE__*/_react.default.createElement("p", null, weatherToday?.wind_direction_compass)), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("p", null, "Humidity"), /*#__PURE__*/_react.default.createElement("p", null, weatherToday?.humidity, " ", /*#__PURE__*/_react.default.createElement("small", null, "%")), /*#__PURE__*/_react.default.createElement("dfn", {
     className: "progress-bar"
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: "progress"
@@ -34213,7 +34214,7 @@ function DisplayWeatherApi() {
   }, "50"), /*#__PURE__*/_react.default.createElement("small", null, "100")), /*#__PURE__*/_react.default.createElement("progress", {
     value: weatherToday?.humidity,
     max: "100"
-  }), "%")), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("p", null, "Visibility"), /*#__PURE__*/_react.default.createElement("p", null, Math.round(weatherToday?.visibility), " miles")), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("p", null, "Air pressure"), /*#__PURE__*/_react.default.createElement("p", null, Math.round(weatherToday?.air_pressure), " mb")))))));
+  }), "%")), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("p", null, "Visibility"), /*#__PURE__*/_react.default.createElement("p", null, Math.round(weatherToday?.visibility), /*#__PURE__*/_react.default.createElement("small", null, " miles"))), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("p", null, "Air pressure"), /*#__PURE__*/_react.default.createElement("p", null, Math.round(weatherToday?.air_pressure), /*#__PURE__*/_react.default.createElement("small", null, " mb"))))))));
 }
 
 var _default = DisplayWeatherApi;
@@ -34361,7 +34362,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58652" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54477" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

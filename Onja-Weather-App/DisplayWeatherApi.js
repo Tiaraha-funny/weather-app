@@ -12,16 +12,16 @@ function DisplayWeatherApi() {
   console.log("global weather", weather);
   console.log("global weather details", details);
 
-  const weatherEveryday = loading && weather && details && details.consolidated_weather;
+  const weatherEveryday = !loading && weather && details && details.consolidated_weather;
   const weatherToday =
-    loading && details && weatherEveryday && weatherEveryday[0];
+    !loading && details && weatherEveryday && weatherEveryday[0];
 
-  const weather1 = loading && details && weatherEveryday && weatherEveryday[1];
+  const weather1 = !loading && details && weatherEveryday && weatherEveryday[1];
   console.log("start tomorow", weather1);
-  const weather2 = loading && details && weatherToday && weatherEveryday[2];
-  const weather3 = loading && details && weatherToday && weatherEveryday[3];
-  const weather4 = loading && details && weatherToday && weatherEveryday[4];
-  const weather5 = loading && details && weatherToday && weatherEveryday[5];
+  const weather2 = !loading && details && weatherToday && weatherEveryday[2];
+  const weather3 = !loading && details && weatherToday && weatherEveryday[3];
+  const weather4 = !loading && details && weatherToday && weatherEveryday[4];
+  const weather5 = !loading && details && weatherToday && weatherEveryday[5];
 
   const weekWeather = [weather1, weather2, weather3, weather4, weather5];
 
@@ -51,7 +51,7 @@ function DisplayWeatherApi() {
     <section>
       <header className="subheadings">
         <Header />
-        {!loading ? (
+        {weather === []  ? (
           <h1 className="loading">Loading...</h1>
         ) : (
           <div className="main-container-description">
@@ -60,11 +60,11 @@ function DisplayWeatherApi() {
               src={`https://www.metaweather.com//static/img/weather/${weatherToday?.weather_state_abbr}.svg`}
             />
             <p className="temp">
-              {`${Math.round(
+              {`${
                 toFahrenheit
-                  ? (weatherToday?.the_temp * 9) / 5 + 32
-                  : weatherToday?.the_temp
-              )} ${toFahrenheit ? `\xB0F` : `\xB0C`}`}
+                  ? Math.round((weatherToday?.the_temp * 9) / 5 + 32)
+                  : Math.round(weatherToday?.the_temp)
+              } ${toFahrenheit ? `\xB0F` : `\xB0C`}`}
             </p>
             <p className="name">{weatherToday?.weather_state_name}</p>
             <p className="date">
@@ -80,7 +80,7 @@ function DisplayWeatherApi() {
         )}
       </header>
       <div className="more-info">
-        {!loading ? (
+        {loading ? (
           <h1 className="loading">Loading...</h1>
         ) : (
           <div>
@@ -89,7 +89,7 @@ function DisplayWeatherApi() {
               <button style={{bg}} onClick={handleConvertingFahrenheit}>&deg;F</button>
             </div>
             <ul className="container">
-              {loading &&
+              {!loading &&
                 details &&
                 weatherEveryday &&
                 weekWeather &&
@@ -123,12 +123,12 @@ function DisplayWeatherApi() {
               <ul className="lists-info">
                 <li>
                   <p>Wind status</p>
-                  <p>{Math.round(weatherToday?.wind_speed)} mph</p>
+                  <p>{Math.round(weatherToday?.wind_speed)}<small>mph</small></p>
                   <p>{weatherToday?.wind_direction_compass}</p>
                 </li>
                 <li>
                   <p>Humidity</p>
-                  <p>{weatherToday?.humidity} %</p>
+                  <p>{weatherToday?.humidity} <small>%</small></p>
                   <dfn className="progress-bar">
                     <div className="progress">
                       <small>0</small>
@@ -144,11 +144,11 @@ function DisplayWeatherApi() {
                 </li>
                 <li>
                   <p>Visibility</p>
-                  <p>{Math.round(weatherToday?.visibility)} miles</p>
+                  <p>{Math.round(weatherToday?.visibility)}<small> miles</small></p>
                 </li>
                 <li>
                   <p>Air pressure</p>
-                  <p>{Math.round(weatherToday?.air_pressure)} mb</p>
+                  <p>{Math.round(weatherToday?.air_pressure)}<small> mb</small></p>
                 </li>
               </ul>
             </div>
