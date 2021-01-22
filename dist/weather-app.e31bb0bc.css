@@ -88,9 +88,11 @@ h2 {
     padding: 1px;
     color: #A09FB1;
 }
+
 .main-container-description {
     text-align: center;
 }
+
 .main-container {
     display: flex;
     flex-direction: row;
@@ -114,10 +116,11 @@ h2 {
 }
 
 .more-info {
-    background-color:  #100E1D;
+    background-color: #100E1D;
     color: #ffffff;
     padding-bottom: 10px;
 }
+
 .container {
     margin: 0;
     display: grid;
@@ -135,9 +138,9 @@ h2 {
 
 .list-items {
     list-style: none;
-    background-color:  #1E213A;
+    background-color: #1E213A;
     text-align: center;
-    margin: 20px; 
+    margin: 20px;
 }
 
 .tempeture {
@@ -162,14 +165,17 @@ h2 {
     font-size: 100px;
     font-family: "Raleway";
 }
+
 .name {
     font-size: 36px;
     color: #88869D;
 }
+
 .date {
     font-size: 18px;
     color: #88869D;
 }
+
 .half-progress {
     margin-left: 60px;
     margin-right: 60px;
@@ -209,7 +215,6 @@ button {
     cursor: pointer;
 }
 
-
 .loading {
     font-size: 40px;
     height: 100%;
@@ -238,7 +243,6 @@ button {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
     }
-
     .subheadings {
         grid-column-start: 1;
         grid-column-end: 2;
@@ -247,12 +251,10 @@ button {
     .main-container-description {
         margin-top: 200px;
     }
-
     .more-info {
         grid-column-start: 2;
         grid-column-end: 6;
     }
-
     .lists-info {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
@@ -260,36 +262,34 @@ button {
     .modal-content input {
         margin-right: 170px;
     }
-
     .search-btn {
-    margin-left: -76px;
-    font-size: 20px;
-    margin-right: 30px;
+        margin-left: -76px;
+        font-size: 20px;
+        margin-right: 30px;
     }
-
     .modal-content input {
         margin-right: 104px;
         width: 70%;
         margin-left: 40px;
     }
-
     .white {
         background-color: white;
     }
-
     .black {
         background-color: black;
     }
-
     .displayBlock {
         width: 32%;
     }
-
     .searchNames {
         width: 55%;
         margin-left: 40px;
     }
+    .container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
 }
-
 
 /*# sourceMappingURL=/weather-app.e31bb0bc.css.map */
