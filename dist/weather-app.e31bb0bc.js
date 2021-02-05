@@ -34160,7 +34160,7 @@ function DisplayWeatherApi() {
 
   return /*#__PURE__*/_react.default.createElement("section", null, /*#__PURE__*/_react.default.createElement("header", {
     className: "subheadings"
-  }, /*#__PURE__*/_react.default.createElement(_Header.default, null), weather === [] ? /*#__PURE__*/_react.default.createElement("h1", {
+  }, /*#__PURE__*/_react.default.createElement(_Header.default, null), loading ? /*#__PURE__*/_react.default.createElement("h1", {
     className: "loading"
   }, "Loading...") : /*#__PURE__*/_react.default.createElement("div", {
     className: "main-container-description"
@@ -34234,7 +34234,7 @@ var _DisplayWeatherApi = _interopRequireDefault(require("./DisplayWeatherApi"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function WeatherApp() {
-  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_DisplayWeatherApi.default, null));
+  return /*#__PURE__*/_react.default.createElement(_DisplayWeatherApi.default, null);
 }
 
 var _default = WeatherApp;
@@ -34362,7 +34362,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54477" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53398" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
