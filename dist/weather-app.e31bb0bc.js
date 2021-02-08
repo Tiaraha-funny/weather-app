@@ -33929,7 +33929,7 @@ function WeatherContextsProvider({
 
   async function detailsApi() {
     console.log("check the fetch again with woeid", weather);
-    const result = weather && (await fetch(`${CORSE_API}${WOEID_API}${weather[0].woeid}`));
+    const result = weather && (await fetch(`${CORSE_API}${WOEID_API}${weather[0]?.woeid}`));
     const dataWoeid = await result.json();
     dispatch({
       type: "DETAILS_API",
@@ -33946,7 +33946,6 @@ function WeatherContextsProvider({
 
   function handleSubmitQuery(e) {
     e.preventDefault();
-    console.log("event", e.target.query);
     setQuery(e.target.query.value);
   }
 
@@ -34362,7 +34361,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53398" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52742" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

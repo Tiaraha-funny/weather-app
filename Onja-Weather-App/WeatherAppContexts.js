@@ -50,7 +50,7 @@ function WeatherContextsProvider({ children }) {
   async function detailsApi() {
     console.log("check the fetch again with woeid", weather);
     const result =
-      weather && (await fetch(`${CORSE_API}${WOEID_API}${weather[0].woeid}`));
+      weather && (await fetch(`${CORSE_API}${WOEID_API}${weather[0]?.woeid}`));
     const dataWoeid = await result.json();
     dispatch({ type: "DETAILS_API", dataWoeid });
   }
@@ -65,7 +65,6 @@ function WeatherContextsProvider({ children }) {
 
   function handleSubmitQuery(e) {
     e.preventDefault();
-    console.log("event", e.target.query);
     setQuery(e.target.query.value);
   }
 
