@@ -34159,7 +34159,7 @@ function DisplayWeatherApi() {
 
   return /*#__PURE__*/_react.default.createElement("section", null, /*#__PURE__*/_react.default.createElement("header", {
     className: "subheadings"
-  }, /*#__PURE__*/_react.default.createElement(_Header.default, null), loading ? /*#__PURE__*/_react.default.createElement("h1", {
+  }, /*#__PURE__*/_react.default.createElement(_Header.default, null), !loading ? /*#__PURE__*/_react.default.createElement("h1", {
     className: "loading"
   }, "Loading...") : /*#__PURE__*/_react.default.createElement("div", {
     className: "main-container-description"
@@ -34178,7 +34178,7 @@ function DisplayWeatherApi() {
     month: "short"
   })), /*#__PURE__*/_react.default.createElement("h1", null, details?.title))), /*#__PURE__*/_react.default.createElement("div", {
     className: "more-info"
-  }, loading ? /*#__PURE__*/_react.default.createElement("h1", {
+  }, !loading ? /*#__PURE__*/_react.default.createElement("h1", {
     className: "loading"
   }, "Loading...") : /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", {
     className: "atittude"
@@ -34361,7 +34361,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52742" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53415" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

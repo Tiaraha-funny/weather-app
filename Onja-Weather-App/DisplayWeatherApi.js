@@ -51,7 +51,7 @@ function DisplayWeatherApi() {
     <section>
       <header className="subheadings">
         <Header />
-        {loading  ? (
+        {!loading  ? (
           <h1 className="loading">Loading...</h1>
         ) : (
           <div className="main-container-description">
@@ -80,7 +80,7 @@ function DisplayWeatherApi() {
         )}
       </header>
       <div className="more-info">
-        {loading ? (
+        {!loading ? (
           <h1 className="loading">Loading...</h1>
         ) : (
           <div>
